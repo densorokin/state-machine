@@ -1,0 +1,16 @@
+{
+  "name": "iState",
+  "version": "1.0.0",
+  "description": "This is an NPM package to manage react state by state machine pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "state machine"
+  ],
+  "author": "",
+  "license": "ISC"
+}
