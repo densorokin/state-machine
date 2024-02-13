@@ -4,7 +4,8 @@
   "description": "This is an NPM package to manage react state by state machine pattern",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/webpack"
   },
   "keywords": [
     "react",
@@ -14,10 +15,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^20.11.17",
+    "@types/webpack": "^5.28.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
     "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4"
   }
