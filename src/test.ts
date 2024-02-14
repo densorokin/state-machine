@@ -1,1 +1,1 @@
-export const a = 1 + 1;
+export const func = (a: number, b: number) => a + b;
