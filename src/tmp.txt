@@ -1,0 +1,18 @@
+    // "@babel/preset-env": "^7.23.9",
+    // "@babel/preset-typescript": "^7.23.3",
+    // "babel-jest": "^29.7.0",
+
+babel.config.ts
+    module.exports = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: 'current'
+        }
+      }
+    ],
+    '@babel/preset-typescript'
+  ]
+};

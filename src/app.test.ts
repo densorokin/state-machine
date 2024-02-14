@@ -1,4 +1,4 @@
-import { func } from './test';
+import { func } from './app';
 
 describe('first', () => {
   test('func', () => {

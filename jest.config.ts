@@ -6,11 +6,15 @@
 import type { Config } from 'jest';
 
 const config: Config = {
+  // A preset that is used as a base for Jest's configuration
+  preset: 'ts-jest',
+
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
 
   // The test environment that will be used for testing
-  testEnvironment: 'jest-environment-node',
+  // testEnvironment: 'jest-environment-node',
+  testEnvironment: 'node',
 
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: ['/node_modules/'],
@@ -23,6 +27,11 @@ const config: Config = {
 
   // The glob patterns Jest uses to detect test files
   testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)']
+
+  // A map from regular expressions to paths to transformers
+  // transform: {
+  //   '^.+\\.(m?js|ts)$': 'babel-jest' // transpile mjs, mts, js, ts files
+  // }
 
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -94,9 +103,6 @@ const config: Config = {
   // An enum that specifies notification mode. Requires { notify: true }
   // notifyMode: "failure-change",
 
-  // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
-
   // Run tests from one or more projects
   // projects: undefined,
 
@@ -157,9 +163,6 @@ const config: Config = {
 
   // This option allows use of a custom test runner
   // testRunner: "jest-circus/runner",
-
-  // A map from regular expressions to paths to transformers
-  // transform: undefined,
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
