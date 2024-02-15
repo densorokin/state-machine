@@ -25,10 +25,6 @@ export const iState = (initialState: string, transitions: transitionsType) => {
 
     send(trigger: string) {
       const currentState = this.state;
-      // const nextState =
-      //   transitions[currentState] && transitions[currentState][trigger]
-      //     ? transitions[currentState][trigger]
-      //     : this.state;
 
       if (!transitions?.[currentState]) {
         throw new Error('not correct initial state');
