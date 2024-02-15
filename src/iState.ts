@@ -17,6 +17,7 @@ export const iState = (initialState: string, transitions: transitionsType) => {
         const subscriptionsByTrigger: subscriptionsByTriggerType = subscriptionsRelatedToTriggers[trigger] || [];
         subscriptionsByTrigger.push(f);
         subscriptionsRelatedToTriggers[trigger] = subscriptionsByTrigger;
+
         return;
       }
 
@@ -27,11 +28,11 @@ export const iState = (initialState: string, transitions: transitionsType) => {
       const currentState = this.state;
 
       if (!transitions?.[currentState]) {
-        throw new Error('not correct initial state');
+        throw new Error('[iState]: not correct initial state');
       }
 
       if (!transitions?.[currentState]?.[trigger]) {
-        throw new Error('not correct trigger name');
+        throw new Error('[iState]: not correct trigger name');
       }
 
       const nextState = transitions[currentState][trigger];
@@ -39,6 +40,7 @@ export const iState = (initialState: string, transitions: transitionsType) => {
       this.state = nextState;
       subscriptions.forEach((f) => f(this.state));
       const subscriptionsByTrigger: subscriptionsByTriggerType = subscriptionsRelatedToTriggers[trigger];
+
       if (subscriptionsByTrigger) {
         subscriptionsByTrigger.forEach((f) => f(this.state));
       }
