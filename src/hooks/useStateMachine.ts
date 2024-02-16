@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // import { useState, useEffect } from 'react';
-import { createMachine } from '../stateMachine';
+import { createMachine, type transitionsType } from '../stateMachine';
 
-export const useStateMachine = <T>(initState: string, transitions: T, options?: { commonSubscribe: boolean }) => {
+export const useStateMachine = (
+  initState: string,
+  transitions: transitionsType,
+  options?: { commonSubscribe: boolean }
+) => {
   console.log('useStateMachine.tsx >>> start');
   const machine = createMachine(initState, transitions);
 

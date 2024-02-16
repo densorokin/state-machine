@@ -1,11 +1,11 @@
 type fType = (arg1: string) => void;
 type subscriptionsType = fType[];
-// type transitionsType = Record<string, Record<string, string>>;
+export type transitionsType = Record<string, Record<string, string>>;
 type subscriptionsRelatedToTriggersType = Record<string, subscriptionsType>;
 type triggerType = string | null;
 type subscriptionsByTriggerType = fType[];
 
-export const createMachine = <T>(initialState: string, transitions: T) => {
+export const createMachine = (initialState: string, transitions: transitionsType) => {
   const subscriptions: subscriptionsType = [];
   const subscriptionsRelatedToTriggers: subscriptionsRelatedToTriggersType = {};
 
