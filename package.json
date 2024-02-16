@@ -1,6 +1,6 @@
 {
   "name": "state-machine-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This is an NPM package to manage react state by state machine pattern",
   "main": "build/main.js",
   "types": "build/main.d.ts",
@@ -27,12 +27,13 @@
     "url": "https://github.com/densorokin/state-machine.git/issues"
   },
   "peerDependencies": {
-    "react": ">=17.0.0",
-    "react-dom": ">=17.0.0"
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.17",
+    "@types/react": "^18.2.55",
     "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
@@ -42,8 +43,8 @@
     "jest": "^29.7.0",
     "npm-dts-webpack-plugin": "^1.3.12",
     "prettier": "^3.2.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "ts-jest": "^29.1.2",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
