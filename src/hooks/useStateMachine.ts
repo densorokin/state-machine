@@ -1,24 +1,23 @@
-import { useState } from 'react';
+// import { useState, useEffect } from 'react';
 import { createMachine } from '../stateMachine';
-import { useEffect } from 'react';
 
-export const useStateMachine = (initState: string, transitions: any, options: any) => {
+export const useStateMachine = <T>(initState: string, transitions: T, options?: { commonSubscribe: boolean }) => {
   console.log('useStateMachine.tsx >>> start');
   const machine = createMachine(initState, transitions);
 
-  const [machineState, setMachineState] = useState(machine.state);
+  // const [machineState, setMachineState] = useState(machine.state);
 
-  useEffect(() => {
-    console.log('useStateMachine.tsx >>> useEffect');
-    if (options.commonSubscribe) {
-      console.log('useStateMachine.tsx >>> subscription');
-      machine.subscribe((state) => setMachineState(state));
-    }
-  }, []);
-
+  // useEffect(() => {
+  //   console.log('useStateMachine.tsx >>> useEffect');
+  //   if (options?.commonSubscribe) {
+  //     console.log('useStateMachine.tsx >>> subscription');
+  //     machine.subscribe((state) => setMachineState(state));
+  //   }
+  // }, []);
+  console.log('useStateMachine.tsx >>> start', machine.state);
   return {
-    ...machine,
-    machineState,
-    setMachineState
+    ...machine
+    // machineState,
+    // setMachineState
   };
 };
