@@ -24,7 +24,7 @@
     "url": "https://github.com/densorokin/state-machine.git"
   },
   "bugs": {
-    "url": "https://github.com/densorokin/state-machine.git"
+    "url": "https://github.com/densorokin/state-machine.git/issues"
   },
   "peerDependencies": {
     "react": ">=17.0.0",
