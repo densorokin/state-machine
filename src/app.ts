@@ -1,8 +1,8 @@
 export const func = (a: number, b: number) => a + b;
 
-import { iState } from './iState';
+import { createMachine } from './stateMachine';
 
-export const machine = iState('initial', {
+export const machine = createMachine('initial', {
   initial: {
     start: 'personal'
   },

@@ -1,1 +1,2 @@
-export { iState } from './iState';
+export { createMachine } from './stateMachine';
+export { useStateMachine } from './hooks/useStateMachine';

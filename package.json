@@ -1,8 +1,8 @@
 {
-  "name": "iState",
+  "name": "state-machine",
   "version": "1.0.0",
   "description": "This is an NPM package to manage react state by state machine pattern",
-  "main": "index.js",
+  "main": "build/main.js",
   "scripts": {
     "build": "webpack",
     "lint": "eslint . --ext .ts",
@@ -18,15 +18,16 @@
   ],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@types/node": "^20.11.17",
-    "@types/webpack": "^5.28.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "ts-node": "^10.9.2"
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@types/node": "^20.11.18",
+    "@types/webpack": "^5.28.5",
+    "ts-node": "^10.9.2",
     "@types/jest": "^29.5.12",
+    "@types/react": "^18.2.55",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "eslint": "^8.56.0",
@@ -37,7 +38,7 @@
     "ts-jest": "^29.1.2",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
-    "webpack": "^5.90.1",
+    "webpack": "^5.90.2",
     "webpack-cli": "^5.1.4"
   }
 }

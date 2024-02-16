@@ -5,7 +5,8 @@ type subscriptionsRelatedToTriggersType = Record<string, subscriptionsType>;
 type triggerType = string;
 type subscriptionsByTriggerType = fType[];
 
-export const iState = (initialState: string, transitions: transitionsType) => {
+// createMachine
+export const createMachine = (initialState: string, transitions: transitionsType) => {
   const subscriptions: subscriptionsType = [];
   const subscriptionsRelatedToTriggers: subscriptionsRelatedToTriggersType = {};
 
