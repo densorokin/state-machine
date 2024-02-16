@@ -2,10 +2,10 @@ type fType = (arg1: string) => void;
 type subscriptionsType = fType[];
 type transitionsType = Record<string, Record<string, string>>;
 type subscriptionsRelatedToTriggersType = Record<string, subscriptionsType>;
-type triggerType = string;
+type triggerType = string | null;
 type subscriptionsByTriggerType = fType[];
 
-export const iState = (initialState: string, transitions: transitionsType) => {
+export const createMachine = (initialState: string, transitions: transitionsType) => {
   const subscriptions: subscriptionsType = [];
   const subscriptionsRelatedToTriggers: subscriptionsRelatedToTriggersType = {};
 
@@ -28,11 +28,11 @@ export const iState = (initialState: string, transitions: transitionsType) => {
       const currentState = this.state;
 
       if (!transitions?.[currentState]) {
-        throw new Error('[iState]: not correct initial state');
+        throw new Error('[createMachine]: not correct initial state');
       }
 
       if (!transitions?.[currentState]?.[trigger]) {
-        throw new Error('[iState]: not correct trigger name');
+        throw new Error('[createMachine]: not correct trigger name');
       }
 
       const nextState = transitions[currentState][trigger];

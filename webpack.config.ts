@@ -5,10 +5,11 @@ const config: Configuration = {
   mode: 'development',
   entry: path.resolve(__dirname, 'src', 'index.ts'),
   output: {
-    // filename: '[name].[contenthash].js',
     filename: '[name].js',
     path: path.resolve(__dirname, 'build'),
-    clean: true
+    clean: true,
+    library: 'state-machine',
+    libraryTarget: 'umd'
   },
   plugins: [new webpack.ProgressPlugin()],
   resolve: {
