@@ -23,6 +23,10 @@ const config: Configuration = {
         exclude: /node_modules/
       }
     ]
+  },
+  externals: {
+    react: 'react',
+    'react-dom': 'react-dom'
   }
 };
 

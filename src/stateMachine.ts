@@ -1,9 +1,11 @@
-type fType = (arg1: string) => void;
-type subscriptionsType = fType[];
-export type transitionsType = Record<string, Record<string, string>>;
-type subscriptionsRelatedToTriggersType = Record<string, subscriptionsType>;
-type triggerType = string | null;
-type subscriptionsByTriggerType = fType[];
+import type {
+  subscriptionCBType,
+  subscriptionsByTriggerType,
+  subscriptionsRelatedToTriggersType,
+  subscriptionsType,
+  transitionsType,
+  triggerType
+} from './types';
 
 export const createMachine = (initialState: string, transitions: transitionsType) => {
   const subscriptions: subscriptionsType = [];
@@ -12,16 +14,16 @@ export const createMachine = (initialState: string, transitions: transitionsType
   const machine = {
     state: initialState,
 
-    subscribe(f: fType, trigger: triggerType = null) {
+    subscribe(cb: subscriptionCBType, trigger: triggerType = null) {
       if (trigger) {
         const subscriptionsByTrigger: subscriptionsByTriggerType = subscriptionsRelatedToTriggers[trigger] || [];
-        subscriptionsByTrigger.push(f);
+        subscriptionsByTrigger.push(cb);
         subscriptionsRelatedToTriggers[trigger] = subscriptionsByTrigger;
 
         return;
       }
 
-      subscriptions.push(f);
+      subscriptions.push(cb);
     },
 
     send(trigger: string) {
@@ -32,13 +34,14 @@ export const createMachine = (initialState: string, transitions: transitionsType
       }
 
       if (!transitions?.[currentState]?.[trigger]) {
-        throw new Error('[createMachine]: not correct trigger name');
+        throw new Error(
+          `[createMachine]: not correct trigger name: { currentState: ${currentState}, trigger: ${trigger} }`
+        );
       }
 
       const nextState = transitions[currentState][trigger];
-
       this.state = nextState;
-      subscriptions.forEach((f) => f(this.state));
+      subscriptions.forEach((cb) => cb(this.state));
       const subscriptionsByTrigger: subscriptionsByTriggerType = subscriptionsRelatedToTriggers[trigger];
 
       if (subscriptionsByTrigger) {
