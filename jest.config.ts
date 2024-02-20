@@ -13,8 +13,7 @@ const config: Config = {
   clearMocks: true,
 
   // The test environment that will be used for testing
-  // testEnvironment: 'jest-environment-node',
-  testEnvironment: 'node',
+  testEnvironment: 'jest-environment-jsdom',
 
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: ['/node_modules/'],
