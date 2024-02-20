@@ -29,9 +29,9 @@ export function createMachine(initialState: string, stateMachine: StateMachine) 
       const destination = destinationTransition.target;
       const destinationDefinition = stateMachine[destination];
 
-      destinationTransition.action();
-      currentDefinition.actions.onOutAction();
-      destinationDefinition.actions.onInAction();
+      destinationTransition?.action();
+      currentDefinition.actions?.onOutAction();
+      destinationDefinition.actions?.onInAction();
 
       machine.value = destination;
 
