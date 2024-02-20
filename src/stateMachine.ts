@@ -1,54 +1,43 @@
-import type {
-  subscriptionCBType,
-  subscriptionsByTriggerType,
-  subscriptionsRelatedToTriggersType,
-  subscriptionsType,
-  transitionsType,
-  triggerType
-} from './types';
+type Actions = {
+  onInAction?: () => void;
+  onOutAction?: () => void;
+};
 
-export const createMachine = (initialState: string, transitions: transitionsType) => {
-  const subscriptions: subscriptionsType = [];
-  const subscriptionsRelatedToTriggers: subscriptionsRelatedToTriggersType = {};
+type Transitions = Record<
+  string,
+  {
+    target: string;
+    action?: () => void;
+  }
+>;
 
+type StateMachineProp = { actions?: Actions; transitions: Transitions };
+type StateMachineEntity = Record<string, StateMachineProp>;
+
+export function createMachine(initialState: string, stateMachine: StateMachineEntity) {
   const machine = {
-    state: initialState,
+    value: initialState,
 
-    subscribe(cb: subscriptionCBType, trigger: triggerType = null) {
-      if (trigger) {
-        const subscriptionsByTrigger: subscriptionsByTriggerType = subscriptionsRelatedToTriggers[trigger] || [];
-        subscriptionsByTrigger.push(cb);
-        subscriptionsRelatedToTriggers[trigger] = subscriptionsByTrigger;
+    transition(currentState: string, event: string): string {
+      const currentDefinition = stateMachine[currentState];
+      const destinationTransition = currentDefinition.transitions[event];
 
+      if (!destinationTransition) {
         return;
       }
 
-      subscriptions.push(cb);
-    },
+      const destination = destinationTransition.target;
+      const destinationDefinition = stateMachine[destination];
 
-    send(trigger: string) {
-      const currentState = this.state;
+      destinationTransition.action();
+      currentDefinition.actions.onOutAction();
+      destinationDefinition.actions.onInAction();
 
-      if (!transitions?.[currentState]) {
-        throw new Error('[createMachine]: not correct initial state');
-      }
+      machine.value = destination;
 
-      if (!transitions?.[currentState]?.[trigger]) {
-        throw new Error(
-          `[createMachine]: not correct trigger name: { currentState: ${currentState}, trigger: ${trigger} }`
-        );
-      }
-
-      const nextState = transitions[currentState][trigger];
-      this.state = nextState;
-      subscriptions.forEach((cb) => cb(this.state));
-      const subscriptionsByTrigger: subscriptionsByTriggerType = subscriptionsRelatedToTriggers[trigger];
-
-      if (subscriptionsByTrigger) {
-        subscriptionsByTrigger.forEach((f) => f(this.state));
-      }
+      return machine.value;
     }
   };
 
   return machine;
-};
+}

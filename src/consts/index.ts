@@ -1,6 +1,6 @@
 export const INITIAL_STATE = 'initial';
 
-export const person = {
+export const Person = {
   initial: {
     start: 'personal'
   },

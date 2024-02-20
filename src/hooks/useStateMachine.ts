@@ -1,23 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { createMachine } from '../stateMachine';
-import type { transitionsType } from '../types';
 
-export const useStateMachine = (
-  initState: string,
-  transitions: transitionsType
-  // options?: { commonSubscribe: boolean }
-) => {
-  const machine = createMachine(initState, transitions);
+export const useStateMachine = (stateMachineDefinition: StateMachineEntity) => {
+  const machine = createMachine(stateMachineDefinition);
 
-  const [machineState, setMachineState] = useState(machine.state);
+  const [machineState, setMachineState] = useState<string>(stateMachineDefinition.initialState);
 
-  useEffect(() => {
-    machine.subscribe((state) => setMachineState(state));
-  }, []);
-
-  return {
-    machineState,
-    send: machine.send.bind(machine),
-    subscribe: machine.subscribe.bind(machine)
+  const transition = (eventName: string) => {
+    setMachineState(machine.transition(machineState, eventName));
   };
+
+  return { transition, machineState };
 };
