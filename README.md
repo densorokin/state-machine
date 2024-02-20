@@ -25,4 +25,4 @@ import { useStateMachine } from "state-machine-lib";
 ```
 
 - Implementation example project
-**To be completed on 22 Feb 2024**
+**should be completed on 22 Feb 2024**
