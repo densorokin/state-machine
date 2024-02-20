@@ -12,9 +12,9 @@ type Transitions = Record<
 >;
 
 type StateMachineProp = { actions?: Actions; transitions: Transitions };
-type StateMachineEntity = Record<string, StateMachineProp>;
+export type StateMachine = Record<string, StateMachineProp>;
 
-export function createMachine(initialState: string, stateMachine: StateMachineEntity) {
+export function createMachine(initialState: string, stateMachine: StateMachine) {
   const machine = {
     value: initialState,
 

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { createMachine } from '../stateMachine';
+import { StateMachine, createMachine } from '../stateMachine';
 
-export const useStateMachine = (stateMachineDefinition: StateMachineEntity) => {
-  const machine = createMachine(stateMachineDefinition);
+export const useStateMachine = (initialState: string, stateMachine: StateMachine) => {
+  const machine = createMachine(initialState, stateMachine);
 
-  const [machineState, setMachineState] = useState<string>(stateMachineDefinition.initialState);
+  const [machineState, setMachineState] = useState<string>(initialState);
 
   const transition = (eventName: string) => {
     setMachineState(machine.transition(machineState, eventName));
