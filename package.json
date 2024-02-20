@@ -1,6 +1,6 @@
 {
   "name": "state-machine-lib",
-  "version": "1.0.11-28",
+  "version": "1.0.11-29",
   "description": "This is an NPM package to manage react state by state machine pattern",
   "main": "build/main.js",
   "types": "build/main.d.ts",
