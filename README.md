@@ -21,7 +21,7 @@ import { useStateMachine } from "state-machine-lib";
 
 - Get the state machine and transition from the hook:
 ```js
-  const { transition, machineState } = useStateMachine(initialState, example);
+const { transition, machineState } = useStateMachine(initialState, example);
 ```
 
 - Implementation example project

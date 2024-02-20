@@ -6,7 +6,7 @@
   "types": "build/main.d.ts",
   "scripts": {
     "build:dev": "webpack --env mode=development",
-    "build:prod": "webpack  --env mode=production && npx dts-bundle-generator -o build/main.d.ts src/index.ts",
+    "build:prod": "webpack --env mode=production && npx dts-bundle-generator -o build/main.d.ts src/index.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prettier:format": "prettier --config .prettierrc 'src/**/*.ts' --write",
