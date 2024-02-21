@@ -7,7 +7,7 @@ export const useStateMachine = (initialState: string, stateMachine: StateMachine
   const [machineState, setMachineState] = useState<string>(initialState);
 
   const transition = (eventName: string) => {
-    setMachineState(machine.transition(machineState, eventName));
+    setMachineState(machine.transition(eventName));
   };
 
   return { transition, machineState };

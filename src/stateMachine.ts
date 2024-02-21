@@ -11,7 +11,7 @@ type TransitionConfig = {
 type TransitionConfigs = Record<string, TransitionConfig>;
 
 type StateMachineStep = { actions?: ActionsConfig; transitions: TransitionConfigs };
-type StepTransitionFn = (currentState: string, event: string) => string;
+type StepTransitionFn = (event: string) => string;
 
 export type StateMachineConfiguration = Record<string, StateMachineStep>;
 export type StateMachine = { value: string; transition: StepTransitionFn };
@@ -20,8 +20,8 @@ export function createMachine(initialStateKey: string, stateMachine: StateMachin
   const machine: StateMachine = {
     value: initialStateKey,
 
-    transition(currentState: string, event: string): string {
-      const currentDefinition = stateMachine[currentState];
+    transition(event: string): string {
+      const currentDefinition = stateMachine[machine.value];
       const destinationTransition = currentDefinition.transitions[event];
 
       if (!destinationTransition) {
