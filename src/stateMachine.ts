@@ -1,26 +1,24 @@
-type Actions = {
+type ActionsConfig = {
   onInAction?: () => void;
   onOutAction?: () => void;
 };
 
-type Transition = {
+type TransitionConfig = {
   target: string;
   action?: () => void;
 };
 
-type Transitions = Record<string, Transition>;
+type TransitionConfigs = Record<string, TransitionConfig>;
 
-type StateMachineProp = { actions?: Actions; transitions: Transitions };
-type TransitionFunc = (currentState: string, event: string) => string;
+type StateMachineStep = { actions?: ActionsConfig; transitions: TransitionConfigs };
+type StepTransitionFn = (currentState: string, event: string) => string;
 
-export type StateMachine = Record<string, StateMachineProp>;
+export type StateMachineConfiguration = Record<string, StateMachineStep>;
+export type StateMachine = { value: string; transition: StepTransitionFn };
 
-export function createMachine(
-  initialState: string,
-  stateMachine: StateMachine
-): { value: string; transition: TransitionFunc } {
-  const machine = {
-    value: initialState,
+export function createMachine(initialStateKey: string, stateMachine: StateMachineConfiguration): StateMachine {
+  const machine: StateMachine = {
+    value: initialStateKey,
 
     transition(currentState: string, event: string): string {
       const currentDefinition = stateMachine[currentState];

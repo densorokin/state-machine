@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { StateMachine, createMachine } from '../stateMachine';
+import { StateMachineConfiguration, createMachine } from '../stateMachine';
 
-export const useStateMachine = (initialState: string, stateMachine: StateMachine) => {
+export const useStateMachine = (initialState: string, stateMachine: StateMachineConfiguration) => {
   const machine = createMachine(initialState, stateMachine);
 
   const [machineState, setMachineState] = useState<string>(initialState);
