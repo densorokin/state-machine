@@ -11,7 +11,7 @@ type TransitionConfig = {
 type TransitionConfigs = Record<string, TransitionConfig>;
 
 type StateMachineStep = { actions?: ActionsConfig; transitions: TransitionConfigs };
-type StepTransitionFn = (event: string) => string;
+type StepTransitionFn = (currentState: string, event: string) => string;
 
 export type StateMachineConfiguration = Record<string, StateMachineStep>;
 export type StateMachine = { value: string; transition: StepTransitionFn };
@@ -20,8 +20,8 @@ export function createMachine(initialStateKey: string, stateMachine: StateMachin
   const machine: StateMachine = {
     value: initialStateKey,
 
-    transition(event: string): string {
-      const currentDefinition = stateMachine[machine.value];
+    transition(currentState: string, event: string): string {
+      const currentDefinition = stateMachine[currentState];
       const destinationTransition = currentDefinition.transitions[event];
 
       if (!destinationTransition) {
@@ -31,9 +31,7 @@ export function createMachine(initialStateKey: string, stateMachine: StateMachin
       const destination = destinationTransition.target;
       const destinationDefinition = stateMachine[destination];
 
-      if (destinationTransition.action) {
-        destinationTransition.action();
-      }
+      destinationTransition.action?.();
       currentDefinition.actions?.onOutAction();
       destinationDefinition.actions?.onInAction();
 
