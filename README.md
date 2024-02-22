@@ -24,5 +24,7 @@ import { useStateMachine } from "state-machine-lib";
 const { transition, machineState } = useStateMachine(initialState, stateMachineConfiguration);
 ```
 
-- Implementation example project
-**should be completed on 22 Feb 2024**
+
+Github repo: [state-machine-implementation](https://github.com/densorokin/state-machine-implementation)
+
+Implementation: [Web page example](https://densorokin.github.io/state-machine-implementation/)
