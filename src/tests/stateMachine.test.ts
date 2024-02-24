@@ -16,7 +16,7 @@ describe('stateMachine', () => {
   test('Should move to step01', () => {
     // arrange
     // act
-    const currentState = machine.transition(machine.value, 'step01');
+    const currentState = machine.transition('step01');
 
     // assert
     expect(currentState).toBe('step01');
@@ -26,9 +26,9 @@ describe('stateMachine', () => {
   });
 
   test('Should move to step02 - with no actions', () => {
-    machine.transition(machine.value, 'step01');
+    machine.transition('step01');
 
-    const currentState = machine.transition(machine.value, 'step02');
+    const currentState = machine.transition('step02');
 
     expect(currentState).toBe('step02');
     expect(machine).not.toHaveProperty('actions');
@@ -36,10 +36,10 @@ describe('stateMachine', () => {
   });
 
   test('Should move to step03', () => {
-    machine.transition(machine.value, 'step01');
-    machine.transition(machine.value, 'step02');
+    machine.transition('step01');
+    machine.transition('step02');
 
-    const currentState = machine.transition(machine.value, 'step03');
+    const currentState = machine.transition('step03');
 
     expect(currentState).toBe('step03');
     expect(machine).not.toHaveProperty('actions');
@@ -47,14 +47,14 @@ describe('stateMachine', () => {
   });
 
   test('Should move to step04 throw step02', () => {
-    machine.transition(machine.value, 'step01');
-    machine.transition(machine.value, 'step02');
-    machine.transition(machine.value, 'step03');
+    machine.transition('step01');
+    machine.transition('step02');
+    machine.transition('step03');
 
-    let currentState = machine.transition(machine.value, 'step02');
+    let currentState = machine.transition('step02');
     expect(currentState).toBe('step02');
 
-    currentState = machine.transition(machine.value, 'step04');
+    currentState = machine.transition('step04');
 
     expect(currentState).toBe('step04');
     expect(machine).not.toHaveProperty('actions');
@@ -62,11 +62,11 @@ describe('stateMachine', () => {
   });
 
   test('Should move to step05 throw step04', () => {
-    machine.transition(machine.value, 'step01');
-    machine.transition(machine.value, 'step02');
-    machine.transition(machine.value, 'step04');
+    machine.transition('step01');
+    machine.transition('step02');
+    machine.transition('step04');
 
-    const currentState = machine.transition(machine.value, 'step05');
+    const currentState = machine.transition('step05');
 
     expect(currentState).toBe('step05');
     expect(machine).not.toHaveProperty('actions');
@@ -74,12 +74,12 @@ describe('stateMachine', () => {
   });
 
   test('move to step06', () => {
-    machine.transition(machine.value, 'step01');
-    machine.transition(machine.value, 'step02');
-    machine.transition(machine.value, 'step04');
-    machine.transition(machine.value, 'step05');
+    machine.transition('step01');
+    machine.transition('step02');
+    machine.transition('step04');
+    machine.transition('step05');
 
-    const currentState = machine.transition(machine.value, 'step06');
+    const currentState = machine.transition('step06');
 
     expect(currentState).toBe('step06');
     expect(machine).not.toHaveProperty('actions');
@@ -87,13 +87,13 @@ describe('stateMachine', () => {
   });
 
   test('move to step00', () => {
-    machine.transition(machine.value, 'step01');
-    machine.transition(machine.value, 'step02');
-    machine.transition(machine.value, 'step04');
-    machine.transition(machine.value, 'step05');
-    machine.transition(machine.value, 'step06');
+    machine.transition('step01');
+    machine.transition('step02');
+    machine.transition('step04');
+    machine.transition('step05');
+    machine.transition('step06');
 
-    const currentState = machine.transition(machine.value, 'step00');
+    const currentState = machine.transition('step00');
 
     expect(currentState).toBe('step00');
     expect(machine).not.toHaveProperty('actions');
@@ -101,7 +101,7 @@ describe('stateMachine', () => {
   });
 
   test('Should not pass step', () => {
-    const value = machine.transition(machine.value, 'NOT_CORRECT_STEP');
+    const value = machine.transition('NOT_CORRECT_STEP');
 
     expect(value).toBeUndefined();
   });
