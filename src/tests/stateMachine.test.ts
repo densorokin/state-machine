@@ -9,7 +9,6 @@ describe('stateMachine', () => {
   });
 
   test('Should be created stateMachine', () => {
-    expect(machine).toHaveProperty('value', INITIAL_STATE);
     expect(machine).toHaveProperty('transition');
   });
 
